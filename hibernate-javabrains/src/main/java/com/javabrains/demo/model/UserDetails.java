@@ -2,6 +2,7 @@ package com.javabrains.demo.model;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,10 +26,11 @@ public class UserDetails {
 	private String username;
 	@Temporal(TemporalType.DATE)
 	private Date dateJoined;
-	private String address;
+	@Embedded
+	private Address address;
 	private String description;
 	
-	public UserDetails(String username, Date dateJoined, String address, String description) {
+	public UserDetails(String username, Date dateJoined, Address address, String description) {
 		this.username = username;
 		this.dateJoined = dateJoined;
 		this.address = address;
