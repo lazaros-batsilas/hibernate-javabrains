@@ -3,6 +3,7 @@ package com.javabrains.demo.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,11 +20,20 @@ import lombok.NoArgsConstructor;
 @Table(name="USER_DETAILS")
 public class UserDetails {
 
-	@Id
+	@Id @GeneratedValue
 	private int userId;
 	private String username;
 	@Temporal(TemporalType.DATE)
 	private Date dateJoined;
 	private String address;
 	private String description;
+	
+	public UserDetails(String username, Date dateJoined, String address, String description) {
+		this.username = username;
+		this.dateJoined = dateJoined;
+		this.address = address;
+		this.description = description;
+	}
+	
+	
 }

@@ -28,7 +28,8 @@ class HibernateJavabrainsApplicationTests {
 					this.entityManagerFactory.unwrap(SessionFactory.class);
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(new UserDetails(1, "First user", new Date(), "some address", "description"));
+		session.save(new UserDetails("First user", new Date(), "some address", "description"));
+		session.save(new UserDetails("Second user", new Date(), "another address", "another description"));
 		session.getTransaction().commit();
 		session.close();
 		
