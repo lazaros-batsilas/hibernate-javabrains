@@ -1,20 +1,29 @@
 package com.javabrains.demo.model;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity	(name="USER_DETAILS")
+@Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Table(name="USER_DETAILS")
 public class UserDetails {
 
 	@Id
-	@Column(name="USER_ID")
 	private int userId;
-	@Column(name="USER_NAME")
 	private String username;
+	@Temporal(TemporalType.DATE)
+	private Date dateJoined;
+	private String address;
+	private String description;
 }
