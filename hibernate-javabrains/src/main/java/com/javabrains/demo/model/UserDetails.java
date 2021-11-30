@@ -1,8 +1,10 @@
 package com.javabrains.demo.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Embedded;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,14 +28,14 @@ public class UserDetails {
 	private String username;
 	@Temporal(TemporalType.DATE)
 	private Date dateJoined;
-	@Embedded
-	private Address address;
+	@ElementCollection
+	private Set<Address> addresses= new HashSet<Address>();
 	private String description;
 	
-	public UserDetails(String username, Date dateJoined, Address address, String description) {
+	public UserDetails(String username, Date dateJoined, Set<Address> addresses, String description) {
 		this.username = username;
 		this.dateJoined = dateJoined;
-		this.address = address;
+		this.addresses = addresses;
 		this.description = description;
 	}
 	

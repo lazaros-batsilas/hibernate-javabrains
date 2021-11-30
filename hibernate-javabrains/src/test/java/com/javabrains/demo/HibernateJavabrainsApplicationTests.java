@@ -1,6 +1,8 @@
 package com.javabrains.demo;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -29,8 +31,10 @@ class HibernateJavabrainsApplicationTests {
 					this.entityManagerFactory.unwrap(SessionFactory.class);
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(new UserDetails("First user", new Date(), new Address("High Street", "Kozani", "GR", "50100"), "description"));
-		session.save(new UserDetails("Second user", new Date(), new Address("Main Street", "Thessaloniki", "GR", "12345"), "another description"));
+		Set<Address> addresses=new HashSet<Address>();
+		addresses.add(new Address("High Street", "Kozani", "GR", "50100"));
+		addresses.add(new Address("Main Street", "Thessaloniki", "GR", "12345"));
+		session.save(new UserDetails("First user", new Date(), addresses, "description"));
 		session.getTransaction().commit();
 		session.close();
 		
@@ -40,7 +44,7 @@ class HibernateJavabrainsApplicationTests {
 		session.getTransaction().commit();
 		session.close();
 		System.out.println("user with username is "+user.getUsername());
-		System.out.println("address is "+user.getAddress().toString());
+//		System.out.println("address is "+user.getAddress().toString());
 	}
 	
 
