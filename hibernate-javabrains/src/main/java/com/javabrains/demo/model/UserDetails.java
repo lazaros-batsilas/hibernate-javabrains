@@ -2,23 +2,13 @@ package com.javabrains.demo.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,14 +25,13 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String username;
-	@OneToOne
-	@JoinColumn(name="vehicleId")
-	private Vehicle vehicle;
+	@OneToMany
+	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	
-	public UserDetails(String username, Vehicle vehicle) {
+	public UserDetails(String username, Collection<Vehicle> vehicles) {
 		this.username = username;
-		this.vehicle = vehicle;
+		this.vehicles = vehicles;
 	}
 	
 	

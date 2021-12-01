@@ -1,8 +1,7 @@
 package com.javabrains.demo;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.javabrains.demo.model.Address;
 import com.javabrains.demo.model.UserDetails;
 import com.javabrains.demo.model.Vehicle;
 
@@ -30,7 +28,13 @@ class HibernateJavabrainsApplicationTests {
 	public void testRelationships() {
 		
 		Vehicle vehicle = new Vehicle("Car");
-		UserDetails user = new UserDetails("First user", vehicle);
+		Vehicle vehicle2 = new Vehicle("Jeep");
+		List<Vehicle> vehicles= new ArrayList<Vehicle>();
+		vehicles.add(vehicle);
+		vehicles.add(vehicle2);
+		UserDetails user = new UserDetails("First user", vehicles);
+		vehicle.setUser(user);
+		vehicle2.setUser(user);
 		
 		SessionFactory sessionFactory = 
 				this.entityManagerFactory.unwrap(SessionFactory.class);
@@ -38,6 +42,7 @@ class HibernateJavabrainsApplicationTests {
 		session.beginTransaction();
 		session.save(user);
 		session.save(vehicle);
+		session.save(vehicle2);
 		session.getTransaction().commit();
 		session.close();
 		
