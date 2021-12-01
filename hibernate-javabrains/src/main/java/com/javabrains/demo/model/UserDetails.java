@@ -35,10 +35,14 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String username;
+	@OneToOne
+	@JoinColumn(name="vehicleId")
+	private Vehicle vehicle;
 
 	
-	public UserDetails(String username) {
+	public UserDetails(String username, Vehicle vehicle) {
 		this.username = username;
+		this.vehicle = vehicle;
 	}
 	
 	

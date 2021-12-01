@@ -30,7 +30,7 @@ class HibernateJavabrainsApplicationTests {
 	public void testRelationships() {
 		
 		Vehicle vehicle = new Vehicle("Car");
-		UserDetails user = new UserDetails("First user");
+		UserDetails user = new UserDetails("First user", vehicle);
 		
 		SessionFactory sessionFactory = 
 				this.entityManagerFactory.unwrap(SessionFactory.class);
