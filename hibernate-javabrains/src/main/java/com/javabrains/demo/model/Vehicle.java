@@ -1,12 +1,9 @@
 package com.javabrains.demo.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +18,8 @@ public class Vehicle {
 	@Id @GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToMany(mappedBy="vehicles")
-	private Collection<UserDetails> users = new ArrayList<UserDetails>();
+	@ManyToOne
+	private UserDetails user;
 	
 	public Vehicle(String vehicleName) {
 		this.vehicleName = vehicleName;

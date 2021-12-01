@@ -3,11 +3,12 @@ package com.javabrains.demo.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String username;
-	@ManyToMany
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="user")
 	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	
