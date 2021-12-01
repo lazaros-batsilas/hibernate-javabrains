@@ -25,7 +25,7 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String username;
-	@OneToMany
+	@OneToMany(mappedBy="user")
 	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	
