@@ -33,8 +33,8 @@ class HibernateJavabrainsApplicationTests {
 		vehicles.add(vehicle);
 		vehicles.add(vehicle2);
 		UserDetails user = new UserDetails("First user", vehicles);
-		vehicle.setUser(user);
-		vehicle2.setUser(user);
+		vehicle.getUsers().add(user);
+		vehicle2.getUsers().add(user);
 		
 		SessionFactory sessionFactory = 
 				this.entityManagerFactory.unwrap(SessionFactory.class);

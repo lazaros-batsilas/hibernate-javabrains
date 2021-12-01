@@ -1,10 +1,12 @@
 package com.javabrains.demo.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,9 +21,8 @@ public class Vehicle {
 	@Id @GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToOne
-	@JoinColumn(name="userId")
-	private UserDetails user;
+	@ManyToMany(mappedBy="vehicles")
+	private Collection<UserDetails> users = new ArrayList<UserDetails>();
 	
 	public Vehicle(String vehicleName) {
 		this.vehicleName = vehicleName;
