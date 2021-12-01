@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,6 +46,9 @@ public class UserDetails {
 	)
 	private Collection<Address> addresses= new ArrayList<Address>();
 	private String description;
+	@OneToOne
+	@JoinColumn(name="vehicleId")
+	private Vehicle vehicle;
 	
 	public UserDetails(String username, Date dateJoined, Collection<Address> addresses, String description) {
 		this.username = username;
