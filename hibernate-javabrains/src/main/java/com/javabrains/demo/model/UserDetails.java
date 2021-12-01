@@ -35,26 +35,10 @@ public class UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String username;
-	@Temporal(TemporalType.DATE)
-	private Date dateJoined;
-	@ElementCollection
-	@GenericGenerator(name="myGenerator",strategy="sequence")
-	@CollectionId(
-	    columns=@Column(name="address"),
-	    type=@Type(type="long"),
-	    generator="myGenerator"
-	)
-	private Collection<Address> addresses= new ArrayList<Address>();
-	private String description;
-	@OneToOne
-	@JoinColumn(name="vehicleId")
-	private Vehicle vehicle;
+
 	
-	public UserDetails(String username, Date dateJoined, Collection<Address> addresses, String description) {
+	public UserDetails(String username) {
 		this.username = username;
-		this.dateJoined = dateJoined;
-		this.addresses = addresses;
-		this.description = description;
 	}
 	
 	

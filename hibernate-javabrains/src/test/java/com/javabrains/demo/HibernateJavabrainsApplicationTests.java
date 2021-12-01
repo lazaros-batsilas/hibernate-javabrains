@@ -27,39 +27,10 @@ class HibernateJavabrainsApplicationTests {
 	}
 	
 	@Test
-	void saveUserDetails() {
-		SessionFactory sessionFactory = 
-					this.entityManagerFactory.unwrap(SessionFactory.class);
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Set<Address> addresses=new HashSet<Address>();
-		addresses.add(new Address("High Street", "Kozani", "GR", "50100"));
-		addresses.add(new Address("Main Street", "Thessaloniki", "GR", "12345"));
-		session.save(new UserDetails("First user", new Date(), addresses, "description"));
-		session.getTransaction().commit();
-		session.close();
-		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-		UserDetails user = session.get(UserDetails.class, 1);
-		session.getTransaction().commit();
-		session.close();
-		System.out.println("user with username is "+user.getUsername());
-		
-		
-	}
-	
-	@Test
-	public void relationships() {
+	public void testRelationships() {
 		
 		Vehicle vehicle = new Vehicle("Car");
-		
-		Set<Address> addresses=new HashSet<Address>();
-		addresses.add(new Address("High Street", "Kozani", "GR", "50100"));
-		addresses.add(new Address("Main Street", "Thessaloniki", "GR", "12345"));
-		
-		UserDetails user = new UserDetails("Second user", new Date(), addresses, "in relationships");
-		user.setVehicle(vehicle);
+		UserDetails user = new UserDetails("First user");
 		
 		SessionFactory sessionFactory = 
 				this.entityManagerFactory.unwrap(SessionFactory.class);
